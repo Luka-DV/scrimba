@@ -225,7 +225,21 @@ function placeOrder(pizzaName: string) {
         return
     }
     cashInRegister += selectedPizza.price
-    const newOrder = { id: nextOrderId++, pizza: selectedPizza, status: "ordered", additionalToppings: newToppings}
+    const newOrder: Order = { id: nextOrderId++, pizza: selectedPizza, status: "ordered"}
+    
+    if(newToppings.length) {
+        newOrder.additionalToppings = newToppings;
+    }
+
+    //or with a conditional spread syntax:
+
+    /* const newOrder: Order = {
+        id: nextOrderId++,
+        pizza: selectedPizza,
+        status: "ordered",
+        ...(newToppings.length && { additionalToppings: newToppings })
+      }; */
+
     orderQueue.push(newOrder)
     // Reset toppings after placing the order
     newToppings = [];
@@ -246,7 +260,7 @@ addNewPizza({ name: "Chicken Bacon Ranch", price: 12 })
 addNewPizza({ name: "BBQ Chicken", price: 12 })
 addNewPizza({ name: "Spicy Sausage", price: 11 })
 
-//addNewToppings("Paprika", "Onions", "Garlic")
+addNewToppings("Paprika", "Onions", "Garlic")
 placeOrder("Chicken Bacon Ranch")
 completeOrder(1)
 
