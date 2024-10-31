@@ -195,10 +195,10 @@ type Order = {
     id: number
     pizza: Pizza
     status: string
-    additionalToppings?: string[];
+    additionalToppings?: string[]; //optional property
 }
 
-const menu = [
+const menu: Pizza[] = [
     { name: "Margherita", price: 8 },
     { name: "Pepperoni", price: 10 },
     { name: "Hawaiian", price: 10 },
@@ -262,6 +262,8 @@ addNewPizza({ name: "Spicy Sausage", price: 11 })
 
 addNewToppings("Paprika", "Onions", "Garlic")
 placeOrder("Chicken Bacon Ranch")
+addNewToppings("Extra cheese")
+placeOrder("Hawaiian")
 completeOrder(1)
 
 console.log("Menu:", menu)
