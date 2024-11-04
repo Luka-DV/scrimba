@@ -5,6 +5,8 @@ type Pizza = {
     price: number
 }
 
+type PizzaWithoutId = Omit<Pizza, "id">
+
 type Order = {
     id: number
     pizza: Pizza
@@ -24,10 +26,22 @@ const menu: Pizza[] = [
 ]
 
 
-function addNewPizza(pizzaObj: Pizza): void {
-    pizzaObj.id = nextPizzaId++;
-    menu.push(pizzaObj)
+
+// function addNewPizza(pizzaObj: PizzaWithoutId): void {
+//     pizzaObj.id = nextPizzaId++;
+//     menu.push(pizzaObj)
+// }
+
+function addNewPizza(pizzaObj: PizzaWithoutId): void {
+    menu.push({...pizzaObj, id: nextOrderId++}); //creates a new obj
 }
+
+//or: (but the former is preferred because it dosnt mutate the input object)
+
+// function addNewPizza(pizzaObj: PizzaWithoutId): void {
+//     const newPizza = Object.assign(pizzaObj, {id: nextOrderId}) // mutates the pizzaObj
+//     menu.push(newPizza);
+// }
 
 function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza = menu.find(pizzaObj => pizzaObj.name === pizzaName)
@@ -93,3 +107,38 @@ completeOrder(2)
 console.log("Menu:", menu)
 console.log("Cash in register:", cashInRegister)
 console.log("Order queue:", orderQueue)
+
+
+
+
+type User = {
+    id: number
+    username: string
+    role: "member" | "contributor" | "admin"
+}
+
+type updatedUser = Partial<User>;
+
+const users: User[] = [
+    { id: 1, username: "john_doe", role: "member" },
+    { id: 2, username: "jane_smith", role: "contributor" },
+    { id: 3, username: "alice_jones", role: "admin" },
+    { id: 4, username: "charlie_brown", role: "member" },
+];
+
+function updateUser(id: number, updates: updatedUser) {
+    const userToUpdate = users.find(userObj => userObj.id === id);
+    if(!userToUpdate) {
+        console.error("User not found");
+        return
+    }
+    Object.assign(userToUpdate, updates);
+    // Use Object.assign to update the found user in place. 
+    // Check MDN if you need help with using Object.assign
+}
+
+// Example updates:
+updateUser(1, { username: "new_john_doe" });
+updateUser(4, { role: "contributor" });
+
+console.log(users)
