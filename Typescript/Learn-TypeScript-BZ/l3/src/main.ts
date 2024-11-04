@@ -32,8 +32,15 @@ const menu: Pizza[] = [
 //     menu.push(pizzaObj)
 // }
 
+// function addNewPizza(pizzaObj: PizzaWithoutId): void {
+//     menu.push({...pizzaObj, id: nextOrderId++}); //creates a new obj
+// }¸
+
+//or:
+
 function addNewPizza(pizzaObj: PizzaWithoutId): void {
-    menu.push({...pizzaObj, id: nextOrderId++}); //creates a new obj
+    const newPizza: Pizza = {...pizzaObj, id: nextOrderId++};
+    menu.push(newPizza);
 }
 
 //or: (but the former is preferred because it dosnt mutate the input object)
@@ -134,7 +141,6 @@ function updateUser(id: number, updates: updatedUser) {
     }
     Object.assign(userToUpdate, updates);
     // Use Object.assign to update the found user in place. 
-    // Check MDN if you need help with using Object.assign
 }
 
 // Example updates:
