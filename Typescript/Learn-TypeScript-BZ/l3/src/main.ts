@@ -148,3 +148,18 @@ updateUser(1, { username: "new_john_doe" });
 updateUser(4, { role: "contributor" });
 
 console.log(users)
+
+
+// Add generics example:
+
+function addToArray<T>(array: T[], item: T): T[] {
+    array.push(item)
+    return array
+}
+
+addToArray<Pizza>(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 })
+addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" })
+
+console.log(menu)
+console.log(orderQueue)
+
