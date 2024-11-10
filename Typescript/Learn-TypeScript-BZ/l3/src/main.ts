@@ -163,3 +163,71 @@ addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "comp
 console.log(menu)
 console.log(orderQueue)
 
+
+// type TestOne = {
+//     name: string
+//     age: number
+//     sayHello(number: number): number
+// }
+
+interface TestOne {
+    name: string;
+    age: number;
+    sayHello(name: string): object;
+}
+
+const test: TestOne = {
+    name: "jake",
+    age: 22,
+    sayHello(name) {
+        return {name};
+    }
+}
+
+
+// classes , Web Ninja
+
+class Invoice {
+    // readonly client: string;
+    // private details: string;
+    // public amount: number;
+  
+    constructor(
+      readonly client: string, 
+      private details: string, 
+      public amount: number,
+    ){
+        this.client = client
+    }
+  
+    format() {
+      return `${this.client} owes £${this.amount} for ${this.details}`;
+    }
+  }
+  
+  const invOne = new Invoice('mario', 'work on the mario website', 250);
+  const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
+  
+  let invoices: Invoice[] = [];
+  invoices.push(invOne)
+  invoices.push(invTwo);
+  
+  invoices.forEach(inv => {
+    console.log(inv.client, /*inv.details,*/ inv.amount, inv.format());
+  })
+
+
+
+function getCount(str: string): number {
+    const vowels: string[] = ["a", "e", "i", "o", "u"];
+    
+    let vowelCount: number = 0;
+    
+    for(let char of str) {
+    if(vowels.includes(char)) {
+        vowelCount++;
+        }
+    }
+    
+    return vowelCount;
+}
