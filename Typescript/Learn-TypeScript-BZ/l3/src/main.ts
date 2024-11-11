@@ -231,3 +231,42 @@ function getCount(str: string): number {
     
     return vowelCount;
 }
+
+
+// typehero Type Aliases (2)
+
+type Name = string;
+type Year = number;
+type IsOperational = boolean;
+type Kilograms = number;
+type Count = number;
+
+type Payload = {
+  name: Name;
+  mass: Kilograms;
+
+};
+
+interface Spacecraft {
+    name: Name;
+    yearBuilt: Year;
+    crewCapacity: Count;
+    launchDate: Date;
+    isOperational: IsOperational;
+    propulsionSystem: string[];
+    payload: Payload[];
+  }
+
+
+const voyager1 = {
+    name: "Voyager 1",
+    yearBuilt: 1977,
+    crewCapacity: 0,
+    launchDate: new Date("1977 09 05"),
+    isOperational: true,
+    propulsionSystem: ["RTG (Radioisotope Thermoelectric Generator)"],
+    payload: [
+        { name: "Golden Record", mass: 0.3 },
+        { name: "Instruments", mass: 721 },
+    ],
+} satisfies Spacecraft;
