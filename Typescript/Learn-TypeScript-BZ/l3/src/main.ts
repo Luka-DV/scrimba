@@ -270,3 +270,73 @@ const voyager1 = {
         { name: "Instruments", mass: 721 },
     ],
 } satisfies Spacecraft;
+
+
+
+// typehero Literal Types (3)
+
+
+// export const findOdd = (xs: number[]): number => {
+//     const numberOccurrences: object = xs.reduce((acc, crr) => {
+//       acc[crr] = (acc[crr] ?? 0) + 1;
+//       return acc
+//     }, {})
+    
+//     for(let number in numberOccurrences) {
+//       if(numberOccurrences[number] % 2 === 1) {
+//         return +number;
+//       }
+//     }
+//   };
+
+// function findOdd(xs: number[]): number {
+//     const numberOccurrences: Record<number, number> = xs.reduce((acc, crr) => {
+//         acc[crr] = (acc[crr] ?? 0) + 1;
+//         return acc;
+//       }, {} as Record<number, number>);
+      
+    
+//     for(let number in numberOccurrences) {
+//       if(numberOccurrences[number] % 2 === 1) {
+//         return +number;
+//       }
+//     }
+
+//     throw new Error("No odd occurrence found.");
+//   };
+  
+
+/* type reduceObj = Record<number, number>;
+
+function findOdd(xs: number[]): number {
+    const numberOccurrences: reduceObj = xs.reduce((acc, crr) => {
+        acc[crr] = (acc[crr] ?? 0) + 1;
+        return acc;
+      }, {} as reduceObj)
+      
+    
+    for(let number in numberOccurrences) {
+      if(numberOccurrences[number] % 2 === 1) {
+        return +number;
+      }
+    }
+
+    throw new Error("No odd occurrence found.");
+  }; */
+
+
+  function findOdd(xs: number[]): number {
+    const numberOccurrences = xs.reduce<Record<number, number>>((acc, crr) => {
+        acc[crr] = (acc[crr] ?? 0) + 1;
+        return acc;
+      }, {});
+      
+    
+    for(let number in numberOccurrences) {
+      if(numberOccurrences[number] % 2 === 1) {
+        return +number;
+      }
+    }
+
+    throw new Error("No odd occurrence found.");
+  };
