@@ -340,3 +340,22 @@ function findOdd(xs: number[]): number {
 
     throw new Error("No odd occurrence found.");
   };
+
+  
+
+  const findOdd2 = (xs: number[]): number => {
+
+    const occurrenceOfNumbers = new Map<number, number>();
+
+    for(let number of xs) {
+            occurrenceOfNumbers.set(number, (occurrenceOfNumbers.get(number) ?? 0) + 1);
+    }
+
+    for(let [number, occurrence] of occurrenceOfNumbers) {
+        if(occurrence % 2 === 1) {
+            return number;
+        }
+    }
+
+    throw new Error("No odd occurence found.")
+  }
