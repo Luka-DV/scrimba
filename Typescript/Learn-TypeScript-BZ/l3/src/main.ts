@@ -359,3 +359,33 @@ function findOdd(xs: number[]): number {
 
     throw new Error("No odd occurence found.")
   }
+
+
+
+// 6 kyu Pyramid Array
+
+
+  function pyramid(n: number) : Array<Array<Number>> {
+  
+    if(n > 0) {
+      
+      const pyramidArray: number[][] = [];
+      
+      for(let i = 1; i <= n; i++) {
+        const subArray: number[] = new Array(i).fill(1);
+        pyramidArray.push(subArray)
+      }
+      
+      return pyramidArray;
+    }
+
+    return [];
+  }
+
+  // or:
+  // function pyramid(n: number) {
+  //   return Array.from({length: n}, (_, i) => Array(i + 1).fill(1) )
+  // }
+
+
+  console.log(pyramid(5));
