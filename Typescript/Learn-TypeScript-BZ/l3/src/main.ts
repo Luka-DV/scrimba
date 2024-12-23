@@ -389,3 +389,19 @@ function findOdd(xs: number[]): number {
 
 
   console.log(pyramid(5));
+
+
+  // 6 kyu Does my number look big in this?
+
+
+  function narcissistic(value: number): boolean {
+    const arrayOfDigits = `${value}`.split("");
+    
+    const sumOfDigitsRaised = arrayOfDigits.reduce( (acc,crr) => {
+      acc += (+crr)**arrayOfDigits.length;
+      return acc;
+    }, 0)
+  
+    return sumOfDigitsRaised === value;
+  }
+  
