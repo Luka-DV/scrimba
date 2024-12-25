@@ -404,4 +404,17 @@ function findOdd(xs: number[]): number {
   
     return sumOfDigitsRaised === value;
   }
+
+
   
+// 8 kyu How many stairs will Suzuki climb in 20 years?
+
+function stairsIn20(stairs:number[][]): number {
+  const stairsInOneYear = stairs.reduce<number>((acc, crr) => {
+      const crrSum = crr.reduce<number>((accSub, crrSub) => accSub + crrSub,0)
+      acc += crrSum
+      return acc
+    },0);
+  
+  return stairsInOneYear*20;
+}
