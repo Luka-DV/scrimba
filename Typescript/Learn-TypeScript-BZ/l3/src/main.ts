@@ -418,3 +418,17 @@ function stairsIn20(stairs:number[][]): number {
   
   return stairsInOneYear*20;
 }
+
+
+
+// 6 kyu Playing with digits
+
+const digPow = (n: number, p: number) => {
+  const sumOfRaisedDigits = `${n}`.split("")
+   .reduce((acc, crr, ind) => {
+     acc += Number(crr)**(p+ind);
+     return acc;
+   }, 0)
+  
+  return sumOfRaisedDigits % n === 0 ? sumOfRaisedDigits/n : -1; 
+}
