@@ -432,3 +432,52 @@ const digPow = (n: number, p: number) => {
   
   return sumOfRaisedDigits % n === 0 ? sumOfRaisedDigits/n : -1; 
 }
+
+
+// 6 kyu Potion Class 101
+/* 
+Based on your programming background you managed to figure that after mixing two potions colors will mix as if mix two RGB colors. For example, if you'll mix potion that have color [255, 255, 0] and volume 10 with one that have color [0, 254, 0] and volume 5, you'll get new potion with color [170, 255, 0] and volume 15. So you decided to create a class Potion that will have two properties: color (a list (a tuple in Python) with 3 integers) and volume (a number), and one method mix that will accept another Potion and return a mixed Potion.
+Example
+
+felix_felicis       =  Potion([255, 255, 255],  7)
+shrinking_solution  =  Potion([ 51, 102,  51], 12)
+new_potion          =  felix_felicis.mix(shrinking_solution)
+
+new_potion.color   ==  [127, 159, 127]
+new_potion.volume  ==  19
+
+Note: Use ceiling when calculating the resulting potion's color. */
+
+
+
+
+export class Potion {
+  
+  constructor(readonly color: number[], readonly volume: number) {}
+  
+  mix(otherPotion: Potion) {
+    
+    const {color: otherColorValue, volume: otherVolume} = otherPotion;
+    
+    const newVolume = this.volume + otherVolume; 
+    const newMixedColor = this.color.map((colorValue, ind) => Math.ceil((colorValue*this.volume + otherColorValue[ind]*otherVolume) / newVolume));
+    
+    return new Potion(newMixedColor, newVolume);
+  }
+}
+
+/* 
+If you declare properties outside the constructor, you must explicitly assign them in the constructor (unless you also initialize them):
+class Potion {
+  public color: number[];
+  private volume: number;
+
+  constructor(color: number[], volume: number) {
+    this.color = color;
+    this.volume = volume;
+  }
+
+  ...
+} */
+
+
